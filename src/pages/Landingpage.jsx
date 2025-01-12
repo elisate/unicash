@@ -4,7 +4,6 @@ import Hero from "../components/Hero";
 import AboutUs from "../components/AboutUs";
 import Footer from "../components/Footer";
 import DigitalSkills from "../components/DigitalSkills";
-import InspiringJourney from "../components/InspiringJourney";
 
 const App = () => {
   return (
@@ -13,7 +12,6 @@ const App = () => {
       <Hero />
       <AboutUs />
       <DigitalSkills />
-      <InspiringJourney />
       <Footer />
     </div>
   );

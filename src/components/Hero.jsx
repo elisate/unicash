@@ -22,8 +22,8 @@ const Hero = () => {
       <img
         src={isFirstImage ? "left.png" : "Img2.png"}
         alt="Sliding Decoration"
-        className={`absolute left-0 top-1/2 transform -translate-y-1/2 w-1/2 sm:w-1/3 md:w-1/2 object-contain z-10 ${
-          isFirstImage ? "lg:slide-in" : "lg:slide-out"
+        className={`absolute left-0 top-1/2 transform -translate-y-1/2 w-1/2 sm:w-1/3 md:w-1/2 object-contain z-10 hidden lg:block ${
+          isFirstImage ? "slide-in" : "slide-out"
         }`}
         key={isFirstImage ? "left.png" : "Img2.png"}
       />

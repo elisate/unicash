@@ -35,7 +35,7 @@ const DigitalSkillsPage = () => {
 
           <div className="group bg-white p-6 rounded-lg shadow-lg w-80 h-120 relative hover:bg-blue-600 hover:text-white transform hover:scale-105 transition-all duration-300">
             <img
-              src="/Img1.jpg"
+              src="/image.jpg"
               alt="Interactive Quiz"
               className="w-full h-64 object-cover rounded-t-lg"
             />
@@ -52,7 +52,7 @@ const DigitalSkillsPage = () => {
 
           <div className="group bg-white p-6 rounded-lg shadow-lg w-80 h-120 relative hover:bg-blue-600 hover:text-white transform hover:scale-105 transition-all duration-300">
             <img
-              src="/Img1.jpg"
+              src="/bg.jpg"
               alt="Download Resources"
               className="w-full h-64 object-cover rounded-t-lg"
             />
