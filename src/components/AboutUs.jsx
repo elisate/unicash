@@ -57,7 +57,7 @@ const AboutUs = () => {
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="text-center bg-gradient-to-t from-blue-600 to-blue-500 rounded-lg p-4 shadow-lg transform transition duration-300 hover:bg-[#31ABB4]"
+              className="text-center bg-[#31ABB4] rounded-lg p-4 shadow-lg transform transition duration-300 hover:bg-[#31ABB4]"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: index * 0.2, duration: 0.8 }}

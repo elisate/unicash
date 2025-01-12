@@ -26,7 +26,7 @@ const Hero = () => {
           digital world.
         </p>
         <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
-          <button className="flex items-center bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white px-6 sm:px-10 py-2 rounded-lg">
+          <button className="flex items-center bg-[#31ABB4] hover:bg-blue-300 text-white px-6 sm:px-10 py-2 rounded-lg">
             Get Started
             <svg
               className="ml-2 h-5 w-5"
