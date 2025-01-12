@@ -39,7 +39,7 @@ const AboutUs = () => {
 
   return (
     <div
-      className="space-y-20 px-4 sm:px-8 md:px-16 py-12 bg-gradient-to-tr from-blue-100 via-white to-blue-200"
+      className="space-y-20 px-4 sm:px-8 md:px-16 py-12 bg-[#31ABB4]"
       ref={sectionRef}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
