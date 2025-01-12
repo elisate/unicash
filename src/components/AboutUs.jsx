@@ -39,21 +39,21 @@ const AboutUs = () => {
 
   return (
     <div
-      className="space-y-20 px-16 py-12 bg-gradient-to-br from-blue-500 to-blue-600"
+      className="space-y-20 px-4 sm:px-8 md:px-16 py-12 bg-gradient-to-br from-blue-500 to-blue-600"
       ref={sectionRef}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-snug">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-snug">
             About Us
           </h1>
-          <p className="mt-4 text-lg md:text-xl text-gray-100">
+          <p className="mt-4 text-base sm:text-lg md:text-xl text-gray-100">
             At IGA Tek, we are dedicated to empowering communities by providing
             exceptional educational resources. Our mission is to bridge the gap
             in digital literacy and provide tools for growth and innovation.
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -62,10 +62,12 @@ const AboutUs = () => {
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: index * 0.2, duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-extrabold text-white">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white">
                 {animatedValues[index].toLocaleString()}
               </h2>
-              <p className="text-lg md:text-xl text-gray-200">{stat.label}</p>
+              <p className="text-base sm:text-lg md:text-xl text-gray-200">
+                {stat.label}
+              </p>
             </motion.div>
           ))}
         </div>
