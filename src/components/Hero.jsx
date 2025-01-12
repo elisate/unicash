@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Hero.css";
 const Hero = () => {
   const [isFirstImage, setIsFirstImage] = useState(true);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setIsFirstImage((prev) => !prev);
