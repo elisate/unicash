@@ -1,27 +1,15 @@
-@keyframes slide-in {
-    0% {
-        transform: translateX(-100%);
-    }
+@keyframes bounce {
 
+    0%,
     100% {
-        transform: translateX(0);
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(0);
     }
 }
 
-@keyframes slide-out {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(100%);
-    }
-}
-
-.slide-in {
-    animation: slide-in 2s ease-in-out;
-}
-
-.slide-out {
-    animation: slide-out 2s ease-in-out;
+.animate-bounce-custom {
+    animation: bounce 2s infinite;
 }

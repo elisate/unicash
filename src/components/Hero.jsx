@@ -1,17 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Hero.css";
 
 const Hero = () => {
-  const [isFirstImage, setIsFirstImage] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsFirstImage((prev) => !prev);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div className="relative bg-gradient-to-tr from-blue-100 via-white to-blue-200 pt-16 overflow-hidden min-h-[60vh] sm:min-h-screen">
       <img
@@ -20,12 +10,9 @@ const Hero = () => {
         className="absolute top-0 right-0 w-1/2 sm:w-1/3 md:w-2/6 object-contain"
       />
       <img
-        src={isFirstImage ? "left.png" : "Img2.png"}
-        alt="Sliding Decoration"
-        className={`absolute left-0 top-1/2 transform -translate-y-1/2 w-1/2 sm:w-1/3 md:w-1/2 object-contain z-10 hidden lg:block ${
-          isFirstImage ? "slide-in" : "slide-out"
-        }`}
-        key={isFirstImage ? "left.png" : "Img2.png"}
+        src="left.png"
+        alt="Animated Decoration"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 w-1/2 sm:w-1/3 md:w-1/2 object-contain z-10 hidden lg:block animate-pulse"
       />
       <div className="absolute right-4 left-4 sm:left-auto sm:right-16 sm:top-1/2 sm:transform sm:-translate-y-1/2 text-center sm:text-left max-w-lg mx-auto">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 leading-tight">
