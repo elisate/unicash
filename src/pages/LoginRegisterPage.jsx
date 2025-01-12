@@ -46,7 +46,7 @@ const LoginRegisterPage = () => {
             <div className="w-full">
               <div className="text-center mb-6">
                 <img
-                  src="logo.JPG"
+                  src="logo.png"
                   alt="IGA Tech Logo"
                   className="mx-auto h-12 w-auto object-contain mb-4"
                 />
