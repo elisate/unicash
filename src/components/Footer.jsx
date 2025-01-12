@@ -3,9 +3,9 @@ import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="bg-blue-600 text-white py-8">
+    <div className="bg-[#31ABB4] text-white py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
           <div className="text-center md:text-left">
             <img
               src="/logo.png"
@@ -87,7 +87,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8 text-center">
+        <div className="mt-8 text-center lg:text-left">
           <p className="text-sm text-gray-300">
             &copy; {new Date().getFullYear()} IGA Tech. All Rights Reserved.
           </p>

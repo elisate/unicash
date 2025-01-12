@@ -102,7 +102,7 @@ const Navbar = () => {
               isOpen ? "block" : "hidden"
             } md:flex flex-col md:flex-row items-center w-full md:w-auto absolute md:static top-16 left-0 bg-white md:bg-transparent shadow-lg md:shadow-none transition-all duration-300`}
           >
-            <div className="flex flex-col md:flex-row md:items-center md:space-x-8 px-4 md:px-0">
+            <div className="flex flex-col md:flex-row md:items-center md:space-x-8 px-4 md:px-0 md:justify-end w-full">
               <Link
                 to="/"
                 className="block text-sm font-medium text-gray-800 hover:text-blue-600 px-4 py-2"
@@ -130,7 +130,7 @@ const Navbar = () => {
             </div>
             <div className="flex justify-center mt-4 md:mt-0 md:ml-4">
               <Link to="/login">
-                <button className="flex items-center bg-blue-400 hover:bg-blue-600 text-white px-4 py-2 text-sm rounded-lg">
+                <button className="flex items-center bg-[#31ABB4] hover:bg-[#31ABB4] text-white px-4 py-2 text-sm rounded-lg">
                   {translations[language].login}
                   <svg
                     className="ml-2 h-4 w-4"
