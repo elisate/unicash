@@ -11,7 +11,6 @@ const Hero = () => {
 
     return () => clearInterval(interval);
   }, []);
-
   return (
     <div className="relative bg-gradient-to-tr from-blue-100 via-white to-blue-200 pt-16 overflow-hidden min-h-[60vh] sm:min-h-screen">
       <img
