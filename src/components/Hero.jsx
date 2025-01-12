@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Hero.css";
+
 const Hero = () => {
   const [isFirstImage, setIsFirstImage] = useState(true);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setIsFirstImage((prev) => !prev);
@@ -9,6 +11,7 @@ const Hero = () => {
 
     return () => clearInterval(interval);
   }, []);
+
   return (
     <div className="relative bg-gradient-to-tr from-blue-100 via-white to-blue-200 pt-16 overflow-hidden min-h-[60vh] sm:min-h-screen">
       <img
@@ -20,7 +23,7 @@ const Hero = () => {
         src={isFirstImage ? "left.png" : "Img2.png"}
         alt="Sliding Decoration"
         className={`absolute left-0 top-1/2 transform -translate-y-1/2 w-1/2 sm:w-1/3 md:w-1/2 object-contain z-10 ${
-          isFirstImage ? "slide-in" : "slide-out"
+          isFirstImage ? "lg:slide-in" : "lg:slide-out"
         }`}
         key={isFirstImage ? "left.png" : "Img2.png"}
       />
