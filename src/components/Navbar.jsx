@@ -100,7 +100,7 @@ const Navbar = () => {
           <div
             className={`${
               isOpen ? "block" : "hidden"
-            } md:flex flex-col md:flex-row items-center w-full md:w-auto absolute md:static top-16 left-0 bg-white md:bg-transparent shadow-lg md:shadow-none transition-all duration-300`}
+            } md:flex flex-col md:flex-row items-right w-full md:w-auto absolute md:static top-16  bg-white md:bg-transparent shadow-lg md:shadow-none transition-all duration-300`}
           >
             <div className="flex flex-col md:flex-row md:items-center md:space-x-8 px-4 md:px-0 md:justify-end w-full">
               <Link
