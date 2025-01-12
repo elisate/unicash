@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AppRoutes from './routes/index';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AppRoutes from "./routes/index";
 
-import './index.css';
+import "./index.css";
 function App() {
   return (
     <BrowserRouter>

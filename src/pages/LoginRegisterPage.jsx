@@ -50,9 +50,6 @@ const LoginRegisterPage = () => {
                   alt="IGA Tech Logo"
                   className="mx-auto h-12 w-auto object-contain mb-4"
                 />
-                <h2 className="text-3xl font-bold text-gray-800">
-                  Welcome to IGA Tech
-                </h2>
               </div>
               <form>
                 {isLogin ? (

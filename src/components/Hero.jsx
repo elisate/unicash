@@ -20,7 +20,7 @@ const Hero = () => {
       />
 
       <div className="absolute right-4 left-4 sm:left-auto sm:right-16 sm:top-1/2 sm:transform sm:-translate-y-1/2 text-center sm:text-left max-w-lg mx-auto">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 leading-tight animate-motion-blur">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 leading-tight animate-boom">
           Welcome to IGA Tek:
           <br /> Empowering Communities Through Technology
         </h1>
