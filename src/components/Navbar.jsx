@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [language, setLanguage] = useState("English");
   const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const navbarRef = useRef(null);
 
   const translations = {
     English: {
@@ -35,8 +37,25 @@ const Navbar = () => {
     setDropdownVisible(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setIsOpen(false);
+        setDropdownVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm border-b border-gray-200">
+    <nav
+      ref={navbarRef}
+      className="fixed top-0 w-full z-50 bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm border-b border-gray-200"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
