@@ -51,7 +51,7 @@ const Footer = () => {
           </div>
           <div className="text-center md:text-left">
             <h4 className="font-bold text-lg mb-4">Stay Connected</h4>
-            <ul className="flex justify-right md:justify-start space-x-6">
+            <ul className="flex justify-center md:justify-start space-x-6">
               <li>
                 <a
                   href="#"
