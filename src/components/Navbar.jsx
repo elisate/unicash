@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [language, setLanguage] = useState("English");
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
   const navbarRef = useRef(null);
 
   const translations = {
@@ -38,6 +38,25 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    const handleIntersection = (entries) => {
+      const [entry] = entries;
+      setIsScrolled(!entry.isIntersecting);
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      threshold: 0,
+    });
+
+    const heroElement = document.querySelector(".hero");
+    if (heroElement) observer.observe(heroElement);
+
+    return () => {
+      if (heroElement) observer.unobserve(heroElement);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -54,7 +73,11 @@ const Navbar = () => {
   return (
     <nav
       ref={navbarRef}
-      className="fixed top-0 w-full z-50 bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm border-b border-gray-200"
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white shadow-md border-b border-gray-200"
+          : "bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm border-none"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
