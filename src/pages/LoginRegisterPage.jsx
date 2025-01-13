@@ -80,7 +80,7 @@ const LoginRegisterPage = () => {
 
                     <button
                       type="submit"
-                      className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none"
+                      className="w-full bg-[#31ABB4] text-white py-2 px-4 rounded-md hover:bg-[#31ABB4] focus:outline-none"
                     >
                       Login
                     </button>
@@ -213,7 +213,7 @@ const LoginRegisterPage = () => {
 
                     <button
                       type="submit"
-                      className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none"
+                      className="w-full bg-[#31ABB4] text-white py-2 px-4 rounded-md hover:bg-[#31ABB4] focus:outline-none"
                     >
                       Register
                     </button>
