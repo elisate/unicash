@@ -16,7 +16,7 @@ const Hero = () => {
             params: {
               apiKey: "9e971c9f76da43c1a663c084017897e1",
               country: region,
-              pageSize: 30,
+              pageSize: 50,
             },
           }
         );
