@@ -53,7 +53,7 @@ const Navbar = () => {
             to="/"
             className="text-2xl font-bold text-white hover:text-blue-600"
           >
-            NewsToday
+            K.ent
           </Link>
         </div>
 
