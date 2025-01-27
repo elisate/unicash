@@ -1,79 +1,110 @@
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const AboutUs = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false });
-
-  const stats = [
-    { label: "Pro Teachers", value: 12 },
-    { label: "Skill Courses", value: 20 },
-    { label: "Students Enrolled", value: 300 },
-  ];
-
-  const [animatedValues, setAnimatedValues] = useState(stats.map(() => 0));
+const TrendingYouTubeVideos = () => {
+  const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (isInView) {
-      const intervalIds = stats.map((stat, index) => {
-        const increment = Math.ceil(stat.value / 100);
-        return setInterval(() => {
-          setAnimatedValues((prev) => {
-            const updatedValues = [...prev];
-            if (updatedValues[index] < stat.value) {
-              updatedValues[index] = Math.min(
-                updatedValues[index] + increment,
-                stat.value
-              );
-            }
-            return updatedValues;
-          });
-        }, 20);
-      });
-
-      return () => intervalIds.forEach((id) => clearInterval(id));
-    } else {
-      setAnimatedValues(stats.map(() => 0));
-    }
-  }, [isInView, stats]);
+    const fetchTrendingVideos = async () => {
+      try {
+        const response = await axios.get(
+          "https://www.googleapis.com/youtube/v3/videos",
+          {
+            params: {
+              part: "snippet,contentDetails,statistics",
+              chart: "mostPopular",
+              regionCode: "US",
+              videoCategoryId: "24",
+              key: "AIzaSyD_6J8BtyVbMy6ygw9ZVvRuonWYVaclBMo",
+              maxResults: 30,
+            },
+          }
+        );
+        setVideos(response.data.items);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching YouTube trending videos:", error);
+        setLoading(false);
+      }
+    };
+    fetchTrendingVideos();
+  }, []);
 
   return (
-    <div
-      className="space-y-20 px-4 sm:px-8 md:px-16 py-12 bg-[#31ABB4]"
-      ref={sectionRef}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-snug">
-            About Us
-          </h1>
-          <p className="mt-4 text-base sm:text-lg md:text-xl text-gray-100">
-            At IGA Tek, we are dedicated to empowering communities by providing
-            exceptional educational resources. Our mission is to bridge the gap
-            in digital literacy and provide tools for growth and innovation.
-          </p>
+    <div className="relative bg-gray-950 pt-16 pb-8 overflow-hidden min-h-[60vh] sm:min-h-screen">
+      <div className="absolute inset-0 opacity-50 bg-gray-950"></div>
+      <div className="text-center text-white z-20 px-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
+          Trending YouTube Entertainment Videos
+        </h1>
+      </div>
+
+      {loading ? (
+        <div className="mt-6 sm:mt-8 text-center text-white z-20">
+          Loading trending YouTube videos...
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center">
-          {stats.map((stat, index) => (
-            <motion.div
+      ) : (
+        <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 px-4 z-20">
+          {videos.map((video, index) => (
+            <div
               key={index}
-              className="text-center bg-[#31ABB4] rounded-lg p-4 shadow-lg transform transition duration-300 hover:bg-[#31ABB4]"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: index * 0.2, duration: 0.8 }}
+              className="max-w-sm rounded-lg bg-gray-950 shadow-xl hover:shadow-2xl transition-all duration-300 group"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white">
-                {animatedValues[index].toLocaleString()}
-              </h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray-200">
-                {stat.label}
-              </p>
-            </motion.div>
+              <a
+                href={`https://www.youtube.com/watch?v=${video.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="relative group">
+                  {video.snippet.thumbnails.high && (
+                    <img
+                      src={video.snippet.thumbnails.high.url}
+                      alt={video.snippet.title}
+                      className="w-full h-48 object-cover rounded-t-lg group-hover:opacity-50 transition-all duration-300"
+                    />
+                  )}
+                  <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-16 w-16 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M14 11l-2 2-2-2m0 0l-2 2 2 2m2-2l2 2-2 2"
+                      />
+                    </svg>
+                  </div>
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <iframe
+                      className="w-full h-full absolute top-0 left-0 rounded-lg"
+                      src={`https://www.youtube.com/embed/${video.id}?autoplay=1&mute=1`}
+                      frameBorder="0"
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <h2 className="text-xl font-semibold text-white">
+                    {video.snippet.title}
+                  </h2>
+                  <p className="text-white text-sm mt-2 line-clamp-3">
+                    {video.snippet.description}
+                  </p>
+                </div>
+              </a>
+            </div>
           ))}
         </div>
-      </div>
+      )}
     </div>
   );
 };
 
-export default AboutUs;
+export default TrendingYouTubeVideos;

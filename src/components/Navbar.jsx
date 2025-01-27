@@ -1,223 +1,200 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [language, setLanguage] = useState("English");
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-  const navbarRef = useRef(null);
 
   const translations = {
     English: {
       home: "Home",
-      courses: "Courses",
-      news: "News",
+      world: "World",
+      politics: "Politics",
+      technology: "Technology",
+      sports: "Sports",
       contact: "Contact",
-      login: "Login",
     },
     Kinyarwanda: {
       home: "Ahabanza",
-      courses: "Amasomo",
-      news: "Amakuru",
+      world: "Isi",
+      politics: "Politiki",
+      technology: "Ikoranabuhanga",
+      sports: "Imikino",
       contact: "Twandikire",
-      login: "Injira",
     },
     French: {
       home: "Accueil",
-      courses: "Cours",
-      news: "Actualités",
+      world: "Monde",
+      politics: "Politique",
+      technology: "Technologie",
+      sports: "Sports",
       contact: "Contact",
-      login: "Connexion",
     },
   };
 
-  const handleLanguageChange = (newLanguage) => {
-    setLanguage(newLanguage);
-    setDropdownVisible(false);
-  };
+  const handleLanguageChange = (newLanguage) => setLanguage(newLanguage);
 
   useEffect(() => {
-    const handleIntersection = (entries) => {
-      const [entry] = entries;
-      setIsScrolled(!entry.isIntersecting);
-    };
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      root: null,
-      threshold: 0,
-    });
-
-    const heroElement = document.querySelector(".hero");
-    if (heroElement) observer.observe(heroElement);
-
-    return () => {
-      if (heroElement) observer.unobserve(heroElement);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-        setIsOpen(false);
-        setDropdownVisible(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <nav
-      ref={navbarRef}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white shadow-md border-b border-gray-200"
-          : "bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm border-none"
+      className={`fixed top-0 w-full z-50 transition-all ${
+        isScrolled ? "bg-gray-950 shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0">
-            <Link to="/">
-              <img
-                src="logo.png"
-                alt="IGA Tech Logo"
-                className="h-10 w-auto object-contain"
-              />
-            </Link>
-          </div>
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-800 hover:text-gray-600 focus:outline-none"
-            >
-              <svg
-                className="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {isOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-          </div>
-          <div
-            className={`${
-              isOpen ? "block" : "hidden"
-            } md:flex flex-col md:flex-row items-center w-full md:w-auto absolute md:static top-16 left-0 bg-white md:bg-transparent shadow-lg md:shadow-none transition-all duration-300`}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+        <div className="flex items-center space-x-4">
+          <Link
+            to="/"
+            className="text-2xl font-bold text-white hover:text-blue-600"
           >
-            <div className="flex flex-col md:flex-row md:items-center md:space-x-8 px-4 md:px-0 md:justify-end w-full">
-              <Link
-                to="/"
-                className="block text-sm font-medium text-gray-800 hover:text-blue-600 px-4 py-2"
-              >
-                {translations[language].home}
-              </Link>
-              <Link
-                to="/courses"
-                className="block text-sm font-medium text-gray-800 hover:text-blue-600 px-4 py-2"
-              >
-                {translations[language].courses}
-              </Link>
-              <Link
-                to="/News"
-                className="block text-sm font-medium text-gray-800 hover:text-blue-600 px-4 py-2"
-              >
-                {translations[language].news}
-              </Link>
-              <Link
-                to="/Contact"
-                className="block text-sm font-medium text-gray-800 hover:text-blue-600 px-4 py-2"
-              >
-                {translations[language].contact}
-              </Link>
-            </div>
-            <div className="flex justify-center mt-4 md:mt-0 md:ml-4">
-              <Link to="/login">
-                <button className="flex items-center bg-[#31ABB4] hover:bg-[#31ABB4] text-white px-4 py-2 text-sm rounded-lg">
-                  {translations[language].login}
-                  <svg
-                    className="ml-2 h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17 16l4-4m0 0l-4-4m4 4H7"
-                    />
-                  </svg>
-                </button>
-              </Link>
-            </div>
-            <div className="relative ml-4">
-              <button
-                onClick={() => setDropdownVisible(!dropdownVisible)}
-                className="flex items-center text-gray-800 hover:text-blue-600 focus:outline-none text-sm"
-              >
-                {language}
-                <svg
-                  className="ml-2 h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+            NewsToday
+          </Link>
+        </div>
+
+        <div className="flex items-center space-x-4">
+          <div className="relative">
+            <button
+              className="flex items-center space-x-2 text-gray-200 hover:text-blue-600 font-medium focus:outline-none"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <img
+                src={
+                  language === "English"
+                    ? "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg"
+                    : language === "Kinyarwanda"
+                    ? "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Flag_of_Rwanda.svg/2560px-Flag_of_Rwanda.svg.png"
+                    : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/2560px-Flag_of_France.svg.png"
+                }
+                alt={language}
+                className="w-6 h-4"
+              />
+              <span>{language}</span>
+            </button>
+            {isOpen && (
+              <div className="absolute right-0 mt-2 w-32 bg-gray-950 border border-gray-700 shadow-md rounded-lg">
+                <button
+                  onClick={() => {
+                    handleLanguageChange("English");
+                    setIsOpen(false);
+                  }}
+                  className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg"
+                    alt="English"
+                    className="w-6 h-4 mr-2"
                   />
-                </svg>
-              </button>
-              {dropdownVisible && (
-                <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-200 shadow-lg rounded-md">
-                  <button
-                    onClick={() => handleLanguageChange("English")}
-                    className="block w-full text-left px-4 py-2 text-xs text-gray-800 hover:bg-gray-100"
-                  >
-                    English
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange("Kinyarwanda")}
-                    className="block w-full text-left px-4 py-2 text-xs text-gray-800 hover:bg-gray-100"
-                  >
-                    Kinyarwanda
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange("French")}
-                    className="block w-full text-left px-4 py-2 text-xs text-gray-800 hover:bg-gray-100"
-                  >
-                    French
-                  </button>
-                </div>
-              )}
-            </div>
+                  English
+                </button>
+                <button
+                  onClick={() => {
+                    handleLanguageChange("Kinyarwanda");
+                    setIsOpen(false);
+                  }}
+                  className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Flag_of_Rwanda.svg/2560px-Flag_of_Rwanda.svg.png"
+                    alt="Kinyarwanda"
+                    className="w-6 h-4 mr-2"
+                  />
+                  Kinyarwanda
+                </button>
+                <button
+                  onClick={() => {
+                    handleLanguageChange("French");
+                    setIsOpen(false);
+                  }}
+                  className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/2560px-Flag_of_France.svg.png"
+                    alt="French"
+                    className="w-6 h-4 mr-2"
+                  />
+                  French
+                </button>
+              </div>
+            )}
           </div>
         </div>
+      </div>
+
+      <div className="md:hidden">
+        <button
+          className="absolute top-4 right-4 text-gray-200 focus:outline-none"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <svg
+            className="h-6 w-6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            {isOpen ? (
+              <path
+                d="M6 18L18 6M6 6l12 12"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            ) : (
+              <path
+                d="M4 6h16M4 12h16M4 18h16"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            )}
+          </svg>
+        </button>
+        {isOpen && (
+          <div className="absolute top-16 left-0 w-full bg-gray-950 shadow-lg">
+            <Link
+              to="/"
+              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+            >
+              {translations[language].home}
+            </Link>
+            <Link
+              to="/world"
+              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+            >
+              {translations[language].world}
+            </Link>
+            <Link
+              to="/politics"
+              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+            >
+              {translations[language].politics}
+            </Link>
+            <Link
+              to="/technology"
+              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+            >
+              {translations[language].technology}
+            </Link>
+            <Link
+              to="/sports"
+              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+            >
+              {translations[language].sports}
+            </Link>
+            <Link
+              to="/contact"
+              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+            >
+              {translations[language].contact}
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   );
