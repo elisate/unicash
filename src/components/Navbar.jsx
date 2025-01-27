@@ -57,32 +57,76 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="flex items-center space-x-4">
-          <div className="relative">
-            <button
-              className="flex items-center space-x-2 text-gray-200 hover:text-blue-600 font-medium focus:outline-none"
-              onClick={() => setIsOpen(!isOpen)}
+        <div className="md:hidden">
+          <button
+            className="text-gray-200 focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <img
-                src={
-                  language === "English"
-                    ? "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg"
-                    : language === "Kinyarwanda"
-                    ? "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Flag_of_Rwanda.svg/2560px-Flag_of_Rwanda.svg.png"
-                    : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/2560px-Flag_of_France.svg.png"
-                }
-                alt={language}
-                className="w-6 h-4"
-              />
-              <span>{language}</span>
-            </button>
-            {isOpen && (
-              <div className="absolute right-0 mt-2 w-32 bg-gray-950 border border-gray-700 shadow-md rounded-lg">
+              {isOpen ? (
+                <path
+                  d="M6 18L18 6M6 6l12 12"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+              ) : (
+                <path
+                  d="M4 6h16M4 12h16M4 18h16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+              )}
+            </svg>
+          </button>
+          {isOpen && (
+            <div className="absolute top-16 left-0 w-full bg-gray-950 shadow-lg">
+              <Link
+                to="/"
+                className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+              >
+                {translations[language].home}
+              </Link>
+              <Link
+                to="/world"
+                className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+              >
+                {translations[language].world}
+              </Link>
+              <Link
+                to="/politics"
+                className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+              >
+                {translations[language].politics}
+              </Link>
+              <Link
+                to="/technology"
+                className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+              >
+                {translations[language].technology}
+              </Link>
+              <Link
+                to="/sports"
+                className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+              >
+                {translations[language].sports}
+              </Link>
+              <Link
+                to="/contact"
+                className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
+              >
+                {translations[language].contact}
+              </Link>
+              <div className="border-t border-gray-700 mt-2">
                 <button
-                  onClick={() => {
-                    handleLanguageChange("English");
-                    setIsOpen(false);
-                  }}
+                  onClick={() => handleLanguageChange("English")}
                   className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
                 >
                   <img
@@ -93,10 +137,7 @@ const Navbar = () => {
                   English
                 </button>
                 <button
-                  onClick={() => {
-                    handleLanguageChange("Kinyarwanda");
-                    setIsOpen(false);
-                  }}
+                  onClick={() => handleLanguageChange("Kinyarwanda")}
                   className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
                 >
                   <img
@@ -107,10 +148,7 @@ const Navbar = () => {
                   Kinyarwanda
                 </button>
                 <button
-                  onClick={() => {
-                    handleLanguageChange("French");
-                    setIsOpen(false);
-                  }}
+                  onClick={() => handleLanguageChange("French")}
                   className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
                 >
                   <img
@@ -121,80 +159,9 @@ const Navbar = () => {
                   French
                 </button>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
-      </div>
-
-      <div className="md:hidden">
-        <button
-          className="absolute top-4 right-4 text-gray-200 focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            {isOpen ? (
-              <path
-                d="M6 18L18 6M6 6l12 12"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-              />
-            ) : (
-              <path
-                d="M4 6h16M4 12h16M4 18h16"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-              />
-            )}
-          </svg>
-        </button>
-        {isOpen && (
-          <div className="absolute top-16 left-0 w-full bg-gray-950 shadow-lg">
-            <Link
-              to="/"
-              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
-            >
-              {translations[language].home}
-            </Link>
-            <Link
-              to="/world"
-              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
-            >
-              {translations[language].world}
-            </Link>
-            <Link
-              to="/politics"
-              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
-            >
-              {translations[language].politics}
-            </Link>
-            <Link
-              to="/technology"
-              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
-            >
-              {translations[language].technology}
-            </Link>
-            <Link
-              to="/sports"
-              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
-            >
-              {translations[language].sports}
-            </Link>
-            <Link
-              to="/contact"
-              className="block px-4 py-2 text-gray-200 hover:bg-gray-700"
-            >
-              {translations[language].contact}
-            </Link>
-          </div>
-        )}
       </div>
     </nav>
   );
