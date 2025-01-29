@@ -1,85 +1,99 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./Hero.css";
+import React from "react";
+import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+
+const quotes = [
+  { text: "WEVENT made my wedding truly magical!", position: "top-left" },
+  {
+    text: "A seamless experience from start to finish.",
+    position: "top-right",
+  },
+  { text: "Their attention to detail is unmatched.", position: "bottom-left" },
+  {
+    text: "Best event planners I’ve ever worked with!",
+    position: "bottom-right",
+  },
+];
+
+const getPositionClass = (position) => {
+  switch (position) {
+    case "top-left":
+      return "top-8 left-8";
+    case "top-right":
+      return "top-8 right-8";
+    case "bottom-left":
+      return "bottom-16 left-8";
+    case "bottom-right":
+      return "bottom-16 right-8";
+    default:
+      return "";
+  }
+};
 
 const Hero = () => {
-  const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchVideos = async () => {
-      try {
-        const response = await axios.get(
-          "https://www.googleapis.com/youtube/v3/videos",
-          {
-            params: {
-              part: "snippet",
-              chart: "mostPopular",
-              videoCategoryId: "10",
-              regionCode: "US",
-              maxResults: 10,
-              key: "AIzaSyD_6J8BtyVbMy6ygw9ZVvRuonWYVaclBMo",
-            },
-          }
-        );
-        setVideos(response.data.items);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching videos:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchVideos();
-  }, []);
-
   return (
-    <div className="relative bg-gray-950 pt-16 pb-8 overflow-hidden min-h-[60vh] sm:min-h-screen">
-      <div className="absolute inset-0 opacity-50 bg-gray-950"></div>
-      <div className="text-center text-white z-20 px-4">
-        <h1 className="text-xl sm:text-3xl md:text-4xl font-semibold mb-6">
-          Latest Music Videos on YouTube
-        </h1>
+    <div
+      className="relative h-[70vh] overflow-hidden bg-black"
+      style={{
+        backgroundImage: "url('/background.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div className="absolute inset-0 bg-black/50 z-0"></div>
+
+      <div className="absolute inset-0 flex flex-col justify-center items-center z-10 px-6 text-center">
+        <motion.div
+          className="bg-black/70 border border-black/70 rounded-xl px-4 py-4 md:px-6 md:py-5 backdrop-blur-lg max-w-md"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          <h1 className="text-2xl sm:text-xl font-bold text-white drop-shadow-lg">
+            “Crafting Unforgettable Moments.”
+          </h1>
+          <p className="text-sm sm:text-base text-gray-200 mt-3 drop-shadow-md">
+            At <span className="font-semibold">WEVENT</span>, we bring elegance
+            and flavor to every occasion.
+          </p>
+        </motion.div>
       </div>
 
-      {loading ? (
-        <div className="mt-6 sm:mt-8 text-center text-white z-20">
-          Loading latest music videos...
-        </div>
-      ) : (
-        <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 px-4 z-20">
-          {videos.map((video, index) => (
-            <div
-              key={index}
-              className="max-w-sm rounded-lg bg-gray-950 shadow-xl hover:shadow-2xl transition-all duration-300"
-            >
-              <a
-                href={`https://www.youtube.com/watch?v=${video.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="relative">
-                  {video.snippet.thumbnails.high && (
-                    <img
-                      src={video.snippet.thumbnails.high.url}
-                      alt={video.snippet.title}
-                      className="w-full h-48 object-cover rounded-t-lg"
-                    />
-                  )}
-                </div>
-                <div className="p-4">
-                  <h2 className="text-xl font-semibold text-white">
-                    {video.snippet.title}
-                  </h2>
-                  <p className="text-white text-sm mt-2 line-clamp-3">
-                    {video.snippet.description}
-                  </p>
-                </div>
-              </a>
-            </div>
-          ))}
-        </div>
-      )}
+      {quotes.map((quote, index) => (
+        <motion.div
+          key={index}
+          className={`absolute ${getPositionClass(
+            quote.position
+          )} bg-black/70 border border-black/70 rounded-lg px-3 py-2 text-sm text-white backdrop-blur-md max-w-xs`}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: [0, 1, 1, 0], scale: [0.8, 1, 1, 0.8] }}
+          transition={{
+            duration: 6,
+            delay: index * 1.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          {quote.text}
+        </motion.div>
+      ))}
+
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+        <motion.p
+          className="text-gray-300 text-xs mb-2"
+          animate={{ opacity: [0, 1], y: [5, 0] }}
+          transition={{ duration: 1.8, delay: 2 }}
+        >
+          Discover More
+        </motion.p>
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-5 h-5 text-white" />
+        </motion.div>
+      </div>
     </div>
   );
 };

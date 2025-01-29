@@ -1,110 +1,60 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import { motion } from "framer-motion";
 
-const TrendingYouTubeVideos = () => {
-  const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(true);
+const images = [
+  { src: "1.jpg", comment: "Delicious and fresh! Everyone loved the flavor." },
+  {
+    src: "2.jpg",
+    comment: "Coffee was a hit at the event! Highly recommended.",
+  },
+  { src: "3.jpg", comment: "The hamburgers were amazing, such a big hit!" },
+  { src: "4.jpg", comment: "A cozy coffee setup that everyone enjoyed." },
+  {
+    src: "5.jpg",
+    comment: "Perfectly served meals. Will definitely hire again!",
+  },
+  { src: "6.jpg", comment: "Great variety of dishes, something for everyone!" },
+  { src: "7.jpg", comment: "Professional service and delicious food!" },
+  { src: "8.jpg", comment: "Everything was served with love and care!" },
+];
 
-  useEffect(() => {
-    const fetchTrendingVideos = async () => {
-      try {
-        const response = await axios.get(
-          "https://www.googleapis.com/youtube/v3/videos",
-          {
-            params: {
-              part: "snippet,contentDetails,statistics",
-              chart: "mostPopular",
-              regionCode: "US",
-              videoCategoryId: "24",
-              key: "AIzaSyD_6J8BtyVbMy6ygw9ZVvRuonWYVaclBMo",
-              maxResults: 30,
-            },
-          }
-        );
-        setVideos(response.data.items);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching YouTube trending videos:", error);
-        setLoading(false);
-      }
-    };
-    fetchTrendingVideos();
-  }, []);
-
+const Hero = () => {
   return (
-    <div className="relative bg-gray-950 pt-16 pb-8 overflow-hidden min-h-[60vh] sm:min-h-screen">
-      <div className="absolute inset-0 opacity-50 bg-gray-950"></div>
-      <div className="text-center text-white z-20 px-4">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
-          Trending YouTube Entertainment Videos
-        </h1>
-      </div>
-
-      {loading ? (
-        <div className="mt-6 sm:mt-8 text-center text-white z-20">
-          Loading trending YouTube videos...
-        </div>
-      ) : (
-        <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 px-4 z-20">
-          {videos.map((video, index) => (
-            <div
-              key={index}
-              className="max-w-sm rounded-lg bg-gray-950 shadow-xl hover:shadow-2xl transition-all duration-300 group"
+    <div
+      className="relative bg-black bg-fixed bg-cover bg-center pb-16"
+      style={{ backgroundImage: "url('background.jpg')" }}
+    >
+      <div className="absolute inset-0 bg-black/50 z-0"></div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 max-w-5xl mx-auto relative z-10">
+        {images.map((image, index) => (
+          <motion.div
+            key={index}
+            className="overflow-hidden rounded-lg shadow-lg transform transition-transform duration-500 hover:scale-110 hover:translate-y-2 relative"
+            initial={{ opacity: 0, scale: 0.9, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: index * 0.3, ease: "easeOut" }}
+          >
+            <img
+              src={image.src}
+              alt={`Gallery ${index + 1}`}
+              className="w-full h-56 object-cover rounded-lg transition-transform duration-500 ease-in-out"
+            />
+            <motion.div
+              className="absolute bottom-4 right-4 text-4xl text-white cursor-pointer"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.3 }}
             >
-              <a
-                href={`https://www.youtube.com/watch?v=${video.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="relative group">
-                  {video.snippet.thumbnails.high && (
-                    <img
-                      src={video.snippet.thumbnails.high.url}
-                      alt={video.snippet.title}
-                      className="w-full h-48 object-cover rounded-t-lg group-hover:opacity-50 transition-all duration-300"
-                    />
-                  )}
-                  <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-16 w-16 text-white"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M14 11l-2 2-2-2m0 0l-2 2 2 2m2-2l2 2-2 2"
-                      />
-                    </svg>
-                  </div>
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <iframe
-                      className="w-full h-full absolute top-0 left-0 rounded-lg"
-                      src={`https://www.youtube.com/embed/${video.id}?autoplay=1&mute=1`}
-                      frameBorder="0"
-                      allow="autoplay; encrypted-media"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <h2 className="text-xl font-semibold text-white">
-                    {video.snippet.title}
-                  </h2>
-                  <p className="text-white text-sm mt-2 line-clamp-3">
-                    {video.snippet.description}
-                  </p>
-                </div>
-              </a>
+              ❤️
+            </motion.div>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-black/70 text-white p-2 rounded-md text-center w-full mb-4">
+              <p className="text-sm">{image.comment}</p>
             </div>
-          ))}
-        </div>
-      )}
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default TrendingYouTubeVideos;
+export default Hero;
