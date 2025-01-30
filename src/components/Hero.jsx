@@ -35,7 +35,7 @@ const Hero = () => {
     <div
       className="relative h-[70vh] overflow-hidden bg-black"
       style={{
-        backgroundImage: "url('/background.jpg')",
+        backgroundImage: `url('/background.jpg?t=${new Date().getTime()})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
