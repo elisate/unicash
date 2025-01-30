@@ -22,7 +22,10 @@ const Hero = () => {
   return (
     <div
       className="relative bg-black bg-fixed bg-cover bg-center pb-16"
-      style={{ backgroundImage: "url('background.jpg')" }}
+      style={{
+        backgroundImage:
+          "url('https://www.thewaytocoffee.com/wp-content/uploads/2021/06/img_60b5942108f4d.jpg')",
+      }}
     >
       <div className="absolute inset-0 bg-black/50 z-0"></div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 max-w-5xl mx-auto relative z-10">

@@ -35,7 +35,7 @@ const Hero = () => {
     <div
       className="relative h-[70vh] overflow-hidden bg-black"
       style={{
-        backgroundImage: `url('/background.jpg?t=${new Date().getTime()})`,
+        backgroundImage: `url('https://www.thewaytocoffee.com/wp-content/uploads/2021/06/img_60b5942108f4d.jpg')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",

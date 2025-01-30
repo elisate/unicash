@@ -7,7 +7,10 @@ const Footer = () => {
     <div>
       <div
         className="relative bg-fixed bg-cover bg-center py-16"
-        style={{ backgroundImage: "url('background.jpg')" }}
+        style={{
+          backgroundImage:
+            "url('https://www.thewaytocoffee.com/wp-content/uploads/2021/06/img_60b5942108f4d.jpg')",
+        }}
       ></div>
 
       <div className="bg-black border border-gray-500 text-white py-12">
@@ -69,7 +72,7 @@ const Footer = () => {
               <h4 className="text-xl font-semibold mb-4">Contact Us</h4>
               <ul>
                 <li className="mb-2">123 Catering Lane</li>
-                <li className="mb-2">Kigali,Rwanda</li>
+                <li className="mb-2">Kigali, Rwanda</li>
                 <li className="mb-2">Email: info@wevent.com</li>
                 <li className="mb-2">Phone: +250 786 7890</li>
               </ul>
