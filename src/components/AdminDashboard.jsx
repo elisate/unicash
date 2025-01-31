@@ -26,7 +26,7 @@ const Card = ({ number, title, percentage, icon, isNegative }) => {
   return (
     <div
       className="p-4 bg-white rounded-lg text-center flex items-center justify-between"
-      style={{ boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset" }}
+      style={{ boxShadow: "0px 4px 4px 2px rgba(0, 0, 0, 0.25) inset" }}
     >
       <div className="flex flex-col items-center">
         <h3 className="text-2xl font-semibold mb-1">{number}</h3>

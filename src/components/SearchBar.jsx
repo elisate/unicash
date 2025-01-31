@@ -27,33 +27,37 @@ export default function Navbar() {
     console.log("Users clicked");
   };
 
-  return (
-    <nav className="w-[1132px] h-[77px] bg-white flex items-center justify-between px-6 shadow-sm border-b border-gray-200 fixed top-0 right-0">
-      <NavbarIcon Icon={Search} size={24} onClick={handleSearchClick} />
+  const handleProfileClick = () => {
+    console.log("Profile clicked");
+  };
 
-      <div className="flex items-center gap-8 ml-auto">
+  return (
+    <nav
+      className="w-full max-w-[1100px] h-[77px]  bg-white flex items-center justify-between px-6 fixed top-0 right-8 z-10 border-b border-gray-300 mx-auto pr-4 lg:width-auto lg:px-8"
+      style={{
+        boxSizing: "border-box",
+        margin: 0,
+        padding: 0,
+        overflowX: "hidden",
+      }}
+    >
+      <div className="flex items-center gap-2 lg:gap-4 lg:ml-0 ml-auto">
+        <NavbarIcon Icon={Search} size={24} onClick={handleSearchClick} />
+      </div>
+
+      <div className="flex items-center gap-4 lg:ml-auto">
         <NavbarIcon
           Icon={Bell}
           size={24}
           onClick={handleBellClick}
           hasNotification={notifications.bell}
         />
-
         <NavbarIcon Icon={Users} size={24} onClick={handleUsersClick} />
-        <div className="h-16 w-[1px] bg-gray-300"></div>
-      </div>
-
-      <div className="flex items-center gap-6">
-        <div className="h-16 w-[1px] bg-gray-300"></div>
-
-        <div
-          className="relative cursor-pointer"
-          onClick={() => console.log("Profile clicked")}
-        >
+        <div className="relative cursor-pointer" onClick={handleProfileClick}>
           <img
             src="/profile.jpg"
             alt="Profile"
-            className="w-10 h-10 rounded-full object-cover"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
           />
           {notifications.profile && (
             <span className="absolute top-0 right-0 h-2.5 w-2.5 bg-green-500 rounded-full"></span>

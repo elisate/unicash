@@ -51,11 +51,14 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              className="w-full max-w-xs px-4 py-1 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-yellow-500 placeholder-transparent"
+              className="w-full max-w-xs px-4 py-1 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              placeholder=" "
             />
             <label
               htmlFor="username"
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 transition-all duration-200 ease-in-out"
+              className={`absolute left-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 transition-all duration-200 ease-in-out ${
+                username ? "text-transparent" : ""
+              }`}
             >
               Fullnames
             </label>
@@ -69,11 +72,14 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full max-w-xs px-4 py-1 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-yellow-500 placeholder-transparent"
+              className="w-full max-w-xs px-4 py-1 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              placeholder=" "
             />
             <label
               htmlFor="email"
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 transition-all duration-200 ease-in-out"
+              className={`absolute left-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 transition-all duration-200 ease-in-out ${
+                email ? "text-transparent" : ""
+              }`}
             >
               Email
             </label>
@@ -87,11 +93,14 @@ const Login = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
-              className="w-full max-w-xs px-4 py-1 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-yellow-500 placeholder-transparent"
+              className="w-full max-w-xs px-4 py-1 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              placeholder=" "
             />
             <label
               htmlFor="phone"
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 transition-all duration-200 ease-in-out"
+              className={`absolute left-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 transition-all duration-200 ease-in-out ${
+                phone ? "text-transparent" : ""
+              }`}
             >
               Phone Number
             </label>
@@ -105,11 +114,14 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full max-w-xs px-4 py-1 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-yellow-500 placeholder-transparent"
+              className="w-full max-w-xs px-4 py-1 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              placeholder=" "
             />
             <label
               htmlFor="password"
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 transition-all duration-200 ease-in-out"
+              className={`absolute left-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 transition-all duration-200 ease-in-out ${
+                password ? "text-transparent" : ""
+              }`}
             >
               Password
             </label>

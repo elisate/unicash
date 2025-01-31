@@ -1,135 +1,120 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TbLayoutDashboardFilled, TbSettings2 } from "react-icons/tb";
 import { FaCalendarAlt, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
 import { MdAnalytics } from "react-icons/md";
 import { IoWallet } from "react-icons/io5";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
-  const [active, setActive] = useState("dashboard");
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  const getActiveClass = (path) => {
+    return currentPath === path
+      ? "text-teal-500"
+      : "text-white hover:text-gray-300";
+  };
+
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!isSidebarCollapsed);
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setSidebarCollapsed(true);
+      } else {
+        setSidebarCollapsed(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="flex">
-      <div className="fixed w-56 text-white min-h-screen bg-[#6B5540] rounded-r-[20px] p-8 flex flex-col justify-between">
+      <div
+        className={`fixed w-56 min-h-screen bg-[#6B5540] rounded-r-[20px] p-8 flex flex-col justify-between transition-all duration-300 ${
+          isSidebarCollapsed ? "w-16" : "w-56"
+        }`}
+      >
         <nav>
           <ul className="space-y-8">
             <li>
-              <a
-                href="/dashboard"
-                onClick={() => setActive("dashboard")}
-                className={`relative flex items-center space-x-3 text-sm transition-colors ${
-                  active === "dashboard"
-                    ? "text-teal-500"
-                    : "text-white hover:text-gray-300"
-                }`}
+              <Link
+                to="/dashboard"
+                className={`relative flex items-center space-x-3 text-sm transition-colors ${getActiveClass(
+                  "/dashboard"
+                )}`}
               >
-                <span
-                  className={`absolute left-0 top-0 h-full w-1 bg-teal-500 ${
-                    active === "dashboard" ? "" : "hidden"
-                  }`}
-                ></span>
                 <TbLayoutDashboardFilled className="h-5 w-5" />
-                <span>Dashboard</span>
-              </a>
+                {!isSidebarCollapsed && <span>Dashboard</span>}
+              </Link>
             </li>
 
             <li>
-              <a
-                href="#"
-                onClick={() => setActive("shops")}
-                className={`relative flex items-center space-x-3 text-sm transition-colors ${
-                  active === "shops"
-                    ? "text-teal-500"
-                    : "text-white hover:text-gray-300"
-                }`}
+              <Link
+                to="/shops"
+                className={`relative flex items-center space-x-3 text-sm transition-colors ${getActiveClass(
+                  "/shops"
+                )}`}
               >
-                <span
-                  className={`absolute left-0 top-0 h-full w-1 bg-teal-500 ${
-                    active === "shops" ? "" : "hidden"
-                  }`}
-                ></span>
                 <FaCalendarAlt className="h-5 w-5" />
-                <span>Shops</span>
-              </a>
+                {!isSidebarCollapsed && <span>Shops</span>}
+              </Link>
             </li>
 
             <li>
-              <a
-                href="#"
-                onClick={() => setActive("student")}
-                className={`relative flex items-center space-x-3 text-sm transition-colors ${
-                  active === "student"
-                    ? "text-teal-500"
-                    : "text-white hover:text-gray-300"
-                }`}
+              <Link
+                to="/students"
+                className={`relative flex items-center space-x-3 text-sm transition-colors ${getActiveClass(
+                  "/students"
+                )}`}
               >
-                <span
-                  className={`absolute left-0 top-0 h-full w-1 bg-teal-500 ${
-                    active === "student" ? "" : "hidden"
-                  }`}
-                ></span>
                 <FaCalendarAlt className="h-5 w-5" />
-                <span>Student</span>
-              </a>
+                {!isSidebarCollapsed && <span>Student</span>}
+              </Link>
             </li>
 
             <li>
-              <a
-                href="#"
-                onClick={() => setActive("analytics")}
-                className={`relative flex items-center space-x-3 text-sm transition-colors ${
-                  active === "analytics"
-                    ? "text-teal-500"
-                    : "text-white hover:text-gray-300"
-                }`}
+              <Link
+                to="/analytics"
+                className={`relative flex items-center space-x-3 text-sm transition-colors ${getActiveClass(
+                  "/analytics"
+                )}`}
               >
-                <span
-                  className={`absolute left-0 top-0 h-full w-1 bg-teal-500 ${
-                    active === "analytics" ? "" : "hidden"
-                  }`}
-                ></span>
                 <MdAnalytics className="h-5 w-5" />
-                <span>Analytics</span>
-              </a>
+                {!isSidebarCollapsed && <span>Analytics</span>}
+              </Link>
             </li>
 
             <li>
-              <a
-                href="#"
-                onClick={() => setActive("wallet")}
-                className={`relative flex items-center space-x-3 text-sm transition-colors ${
-                  active === "wallet"
-                    ? "text-teal-500"
-                    : "text-white hover:text-gray-300"
-                }`}
+              <Link
+                to="/wallet"
+                className={`relative flex items-center space-x-3 text-sm transition-colors ${getActiveClass(
+                  "/wallet"
+                )}`}
               >
-                <span
-                  className={`absolute left-0 top-0 h-full w-1 bg-teal-500 ${
-                    active === "wallet" ? "" : "hidden"
-                  }`}
-                ></span>
                 <IoWallet className="h-5 w-5" />
-                <span>Wallet</span>
-              </a>
+                {!isSidebarCollapsed && <span>Wallet</span>}
+              </Link>
             </li>
 
             <li>
-              <a
-                href="#"
-                onClick={() => setActive("settings")}
-                className={`relative flex items-center space-x-3 text-sm transition-colors ${
-                  active === "settings"
-                    ? "text-teal-500"
-                    : "text-white hover:text-gray-300"
-                }`}
+              <Link
+                to="/settings"
+                className={`relative flex items-center space-x-3 text-sm transition-colors ${getActiveClass(
+                  "/settings"
+                )}`}
               >
-                <span
-                  className={`absolute left-0 top-0 h-full w-1 bg-teal-500 ${
-                    active === "settings" ? "" : "hidden"
-                  }`}
-                ></span>
                 <TbSettings2 className="h-5 w-5" />
-                <span>Settings</span>
-              </a>
+                {!isSidebarCollapsed && <span>Settings</span>}
+              </Link>
             </li>
           </ul>
         </nav>
@@ -142,7 +127,7 @@ const Sidebar = () => {
                 className="flex items-center space-x-3 text-sm text-white hover:text-gray-300 transition-colors"
               >
                 <FaQuestionCircle className="h-5 w-5" />
-                <span>Help</span>
+                {!isSidebarCollapsed && <span>Help</span>}
               </a>
             </li>
 
@@ -152,14 +137,14 @@ const Sidebar = () => {
                 className="flex items-center space-x-3 text-sm text-white hover:text-gray-300 transition-colors"
               >
                 <FaSignOutAlt className="h-5 w-5" />
-                <span>Logout</span>
+                {!isSidebarCollapsed && <span>Logout</span>}
               </a>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="flex-1 p-8"> </div>
+      <div className="flex-1 p-8"></div>
     </div>
   );
 };
