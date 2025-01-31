@@ -3,7 +3,7 @@ import { Box, Typography, Card, CardContent } from "@mui/material";
 import AddRemove from "./AddRemove";
 
 const ShopsDashboard = () => {
-  const [shops, setShops] = useState([...Array(10)]);
+  const [shops, setShops] = useState([...Array(16)]);
 
   return (
     <Box display="flex" flexDirection="column" p={2} sx={{ marginTop: 2 }}>

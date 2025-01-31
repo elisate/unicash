@@ -1,85 +1,102 @@
-import React from "react";
-import {
-  Card,
-  CardContent,
-  TextField,
-  Button,
-  Typography,
-} from "@mui/material";
+import React, { useState } from "react";
+import { Box, Typography, Card, CardContent } from "@mui/material";
+import AddRemove from "./AddRemove";
 
-const AddNewShop = ({ newShop, setNewShop, handleAddShop }) => {
+const ShopsDashboard = () => {
+  const [shops, setShops] = useState([...Array(16)]);
+  const [newShop, setNewShop] = useState({ name: "", location: "" });
+
+  const handleAddShop = () => {
+    // Add new shop logic
+    if (newShop.name && newShop.location) {
+      setShops([...shops, newShop]);
+      setNewShop({ name: "", location: "" });
+    }
+  };
+
   return (
-    <Card
+    <Box
+      display="flex"
+      flexDirection="column"
+      p={2}
       sx={{
-        minWidth: "280px",
-        maxWidth: "320px",
-        height: "180px",
-        borderRadius: "8px",
-        flexShrink: 0,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "space-between",
-        border: "2px dashed gray",
-        padding: 1,
-        position: "fixed", // Fixed position
-        top: "20px", // Adjust top position (change as needed)
-        left: "20px", // Fixed to the left side of the screen
-        zIndex: 1000, // Ensure it's above other content
-        marginBottom: "20px",
+        marginTop: 2,
+        height: "100vh", // Ensure the parent container takes full height
+        paddingBottom: "220px", // Space for AddRemove component (adjust this if necessary)
       }}
     >
-      <CardContent
+      <Typography
+        variant="h4"
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          height: "100%",
+          mb: -2,
+          top: 0,
+          background: "white",
+          zIndex: 0,
+          padding: "8px 0",
+          fontSize: "1.25rem",
         }}
       >
-        <Typography
-          variant="h6"
-          sx={{
-            mb: 1,
-            fontSize: "14px",
-            textAlign: "left",
-            fontWeight: "bold",
-          }}
-        >
-          Add New Shop
-        </Typography>
-        <TextField
-          label="Shop Name"
-          variant="outlined"
-          size="small"
-          value={newShop.name}
-          onChange={(e) => setNewShop({ ...newShop, name: e.target.value })}
-          sx={{ mb: 1, width: "85%" }}
-        />
-        <TextField
-          label="Location"
-          variant="outlined"
-          size="small"
-          value={newShop.location}
-          onChange={(e) => setNewShop({ ...newShop, location: e.target.value })}
-          sx={{ mb: 1, width: "85%" }}
-        />
-        <Button
-          variant="contained"
-          onClick={handleAddShop}
-          sx={{
-            width: "85%",
-            height: "30px",
-            fontSize: "12px",
-            fontWeight: "bold",
-          }}
-        >
-          Add Shop
-        </Button>
-      </CardContent>
-    </Card>
+        Registered Shops
+      </Typography>
+
+      <Box
+        sx={{
+          display: "flex",
+          gap: 2,
+          flexWrap: "wrap",
+          justifyContent: "flex-start",
+          paddingBottom: 2,
+          maxWidth: "100%",
+          height: "350px",
+          overflowY: "auto",
+          marginTop: 4, // Space between the cards and the title
+        }}
+      >
+        {shops.map((_, index) => (
+          <Card
+            key={index}
+            sx={{
+              minWidth: "100px",
+              maxWidth: "120px",
+              height: "120px",
+              borderRadius: "10px",
+              flexShrink: 0,
+              marginTop: 2,
+            }}
+          >
+            <CardContent>
+              <Box
+                sx={{
+                  width: "80px",
+                  height: "50px",
+                  backgroundColor: "lightgray",
+                  marginY: 1,
+                  borderRadius: "5px",
+                  backgroundImage: "url('https://via.placeholder.com/60')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              ></Box>
+
+              <Typography variant="h6" sx={{ mt: 1, fontSize: "10px" }}>
+                Shop {index + 1}
+              </Typography>
+              <Typography variant="body2" sx={{ fontSize: "12px" }}>
+                Nyarugenge
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
+
+      {/* AddRemove component aligned at the bottom */}
+      <AddRemove
+        newShop={newShop}
+        setNewShop={setNewShop}
+        handleAddShop={handleAddShop}
+      />
+    </Box>
   );
 };
 
-export default AddNewShop;
+export default ShopsDashboard;
