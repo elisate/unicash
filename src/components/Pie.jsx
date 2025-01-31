@@ -24,7 +24,7 @@ const cardData = [
     amount: "600,000 FRW",
     icon: (
       <FaSignInAlt
-        className="text-white"
+        className="text-black"
         size={18}
         style={{ transform: "rotate(180deg)" }}
       />
@@ -98,7 +98,7 @@ export default function DoughnutWithCards() {
                   {card.icon}
                 </div>
                 <h3
-                  className={`text-sm font-semibold text-white ml-2 p-1 rounded ${card.bgColor}`}
+                  className={`text-sm font-semibold text-black  ml-2 p-1 rounded ${card.bgColor}`}
                 >
                   {card.title}
                 </h3>

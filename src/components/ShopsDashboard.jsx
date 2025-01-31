@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box, Typography, Card, CardContent } from "@mui/material";
-import AddRemove from "./AddRemove";
 
 const ShopsDashboard = () => {
   const [shops, setShops] = useState([...Array(16)]);
