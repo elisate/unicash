@@ -1,18 +1,10 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import AboutUs from "../components/AboutUs";
-import Footer from "../components/Footer";
-import Services from "../components/Services";
+import LogIn from "../components/login";
 
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <Hero />
-      <AboutUs />
-      <Services />
-      <Footer />
+      <LogIn />
     </div>
   );
 };
