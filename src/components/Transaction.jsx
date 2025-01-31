@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { FaArrowDown, FaArrowUp } from "react-icons/fa"; // Importing icons
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 const sampleTransactions = [
   {
     type: "Bank of Kigali",
     description: "You have received 1,000,000 RWF on your Account.",
-    icon: <FaArrowDown style={{ color: "green" }} />, // Downward arrow for received
+    icon: <FaArrowDown style={{ color: "green" }} />,
   },
   {
     type: "Mobile Money",
     description: "You have sent 1,000,000 RWF on your Account.",
-    icon: <FaArrowUp style={{ color: "red" }} />, // Upward arrow for sent
+    icon: <FaArrowUp style={{ color: "red" }} />,
   },
   {
     type: "Bank of Kigali",
@@ -28,15 +28,17 @@ const Transaction = ({ transactions = [] }) => {
   const [selectedOption, setSelectedOption] = useState("Bank of Kigali");
 
   return (
-    <div style={{ textAlign: "left", marginTop: "50px" }}>
+    <div style={{ textAlign: "left", marginTop: "50px" }} className="ml-1">
       <h2
         style={{ color: "black", marginBottom: "20px" }}
-        className="text-2xl font-bold"
+        className="text-xl font-semibold"
       >
         Transaction Summary
       </h2>
-      <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
-        {/* Buttons outside the table */}
+      <div
+        style={{ display: "flex", gap: "10px", marginBottom: "10px" }}
+        className="ml-1"
+      >
         <button
           onClick={() => setSelectedOption("Bank of Kigali")}
           style={{
@@ -48,7 +50,7 @@ const Transaction = ({ transactions = [] }) => {
             backgroundColor:
               selectedOption === "Bank of Kigali" ? "#e0e0e0" : "transparent",
             textDecoration:
-              selectedOption === "Bank of Kigali" ? "underline" : "none", // Underline for active
+              selectedOption === "Bank of Kigali" ? "underline" : "none",
           }}
         >
           Bank of Kigali
@@ -64,20 +66,19 @@ const Transaction = ({ transactions = [] }) => {
             backgroundColor:
               selectedOption === "Mobile Money" ? "#e0e0e0" : "transparent",
             textDecoration:
-              selectedOption === "Mobile Money" ? "underline" : "none", // Underline for active
+              selectedOption === "Mobile Money" ? "underline" : "none",
           }}
         >
           Mobile Money
         </button>
       </div>
 
-      {/* Table below the buttons */}
       <table
         style={{
           width: "1000px",
           borderCollapse: "collapse",
           backgroundColor: "#f0f0f0",
-          marginTop: "0px", // Reduced marginTop to bring the table closer to buttons
+          marginTop: "0px",
           marginLeft: "3px",
           borderRadius: "10px",
           overflow: "hidden",
@@ -92,10 +93,9 @@ const Transaction = ({ transactions = [] }) => {
                 textAlign: "left",
                 fontSize: "12px",
                 paddingLeft: "15px",
-                borderBottom: "1px solid black", // Add bottom border here
+                borderBottom: "1px solid black",
               }}
             >
-              {/* Only display the selected transactions */}
               {transactions
                 .filter((transaction) => transaction.type === selectedOption)
                 .map((transaction, index) => (
@@ -106,8 +106,8 @@ const Transaction = ({ transactions = [] }) => {
                       alignItems: "center",
                       gap: "10px",
                       marginBottom: "10px",
-                      padding: "10px", // Adding padding for inner space
-                      borderBottom: "1px solid black", // Border line between transaction list items
+                      padding: "10px",
+                      borderBottom: "1px solid black",
                     }}
                   >
                     {transaction.icon}

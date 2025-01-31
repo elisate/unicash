@@ -22,21 +22,12 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-white flex justify-start items-center min-h-screen pl-8">
-      <div
-        className="w-[453px]"
-        style={{
-          position: "absolute",
-          top: "168px",
-          left: "93px",
-          gap: "22px",
-          height: "auto",
-        }}
-      >
-        <h2
-          className="text-left text-4xl font-bold text-black mb-2 
-          font-bricolage text-[40px] leading-[48px]"
-        >
+    <div className="bg-white flex justify-between items-center min-h-screen px-16">
+      <div className="w-[453px] mt-[10px] gap-[22px]">
+        <div className="mb-6">
+          <img src="/logo.png" alt="Logo" className="w-32 h-auto" />
+        </div>
+        <h2 className="text-left text-3xl  font-bold text-black mb-2 font-custom text-[40px] leading-[32px]">
           Welcome back
         </h2>
         <p className="text-left text-sm text-gray-500 mb-6">
@@ -153,6 +144,14 @@ const Login = () => {
             <a href="#">Forgot Password?</a>
           </div>
         </div>
+      </div>
+
+      <div className="hidden md:block w-1/2">
+        <img
+          src="/image.jpg"
+          alt="Login Image"
+          className="object-contain w-full max-h-[85vh]"
+        />
       </div>
     </div>
   );

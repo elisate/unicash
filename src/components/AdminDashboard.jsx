@@ -1,96 +1,97 @@
-import {
-  FaUserGraduate,
-  FaStore,
-  FaRegCreditCard,
-  FaArrowUp,
-  FaArrowDown,
-} from "react-icons/fa";
-import MyAccounts from "./MyAccounts";
-import Notifications from "./Notification";
-import Pie from "./Pie";
-import Transaction from "./Transaction";
+import React, { useState } from "react";
+import { Box, Typography, Card, CardContent } from "@mui/material";
+import AddRemove from "./AddRemove"; // Import AddNewShop component
 
-const Card = ({ number, title, percentage, icon, isNegative }) => {
-  const arrow = isNegative ? (
-    <FaArrowDown
-      className="text-red-500 mr-1"
-      style={{ transform: "rotate(30deg)" }}
-    />
-  ) : (
-    <FaArrowUp
-      className="text-green-500 mr-1"
-      style={{ transform: "rotate(30deg)" }}
-    />
-  );
+const ShopsDashboard = () => {
+  const [shops, setShops] = useState([
+    { name: "Shop 1", location: "Nyarugenge" },
+    { name: "Shop 2", location: "Kigali" },
+    { name: "Shop 3", location: "Nyamirambo" },
+    { name: "Shop 4", location: "Remera" },
+    { name: "Shop 5", location: "Kigali" },
+  ]);
+  const [newShop, setNewShop] = useState({ name: "", location: "" });
+
+  const handleAddShop = () => {
+    if (newShop.name && newShop.location) {
+      setShops([...shops, newShop]);
+      setNewShop({ name: "", location: "" });
+    } else {
+      alert("Please fill in both name and location!");
+    }
+  };
 
   return (
-    <div
-      className="p-4 bg-white rounded-lg text-center flex items-center justify-between"
-      style={{ boxShadow: "0px 4px 4px 2px rgba(0, 0, 0, 0.25) inset" }}
+    <Box
+      display="flex"
+      flexDirection="column"
+      p={2}
+      sx={{ marginTop: 2, minHeight: "100vh", overflowY: "auto" }}
     >
-      <div className="flex flex-col items-center">
-        <h3 className="text-2xl font-semibold mb-1">{number}</h3>
-        <h3 className="text-gray-600 text-md mb-1">{title}</h3>
-        <p className="text-xs text-gray-500 flex items-center">
-          {arrow}
-          {percentage} Since last month
-        </p>
-      </div>
-      {icon}
-    </div>
+      {/* Title Section */}
+      <Typography
+        variant="h5"
+        sx={{
+          mb: 2,
+          background: "white",
+          zIndex: 1,
+          padding: "10px 0", // Add padding for better spacing
+          fontSize: "1.5rem", // Slightly larger font size
+          fontWeight: "bold", // Bold the title
+          position: "sticky", // Make title stick at the top
+          top: 0, // Pin to the top of the screen
+          boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)", // Add a subtle shadow to separate it from content
+        }}
+      >
+        Registered Shops
+      </Typography>
+
+      {/* Add New Shop Section */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "180px", // Fixed height for Add New Shop
+          overflowY: "auto", // Scrollable
+          marginBottom: 2,
+        }}
+      >
+        <AddRemove
+          newShop={newShop}
+          setNewShop={setNewShop}
+          handleAddShop={handleAddShop}
+        />
+      </Box>
+
+      {/* Display Existing Shops */}
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+        {shops.map((shop, index) => (
+          <Card
+            key={index}
+            sx={{
+              minWidth: "200px",
+              maxWidth: "250px",
+              height: "180px",
+              borderRadius: "8px",
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h6"
+                sx={{ fontSize: "16px", fontWeight: "bold" }}
+              >
+                {shop.name}
+              </Typography>
+              <Typography variant="body2" sx={{ fontSize: "14px" }}>
+                {shop.location}
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
+    </Box>
   );
 };
 
-export default function AdminDashboard() {
-  const data = [
-    {
-      number: 220,
-      title: "Students",
-      percentage: "3.46%",
-      icon: <FaUserGraduate className="text-3xl text-blue-600" />,
-      isNegative: true,
-    },
-    {
-      number: 30,
-      title: "Shops",
-      percentage: "3.46%",
-      icon: <FaStore className="text-3xl text-green-600" />,
-      isNegative: false,
-    },
-    {
-      number: "3500.00",
-      title: "Debt Metrics",
-      percentage: "3.46%",
-      icon: <FaRegCreditCard className="text-3xl text-red-600" />,
-      isNegative: false,
-    },
-  ];
-
-  return (
-    <div className="p-4 bg-white w-[1080px] right-2 fixed top-[77px] max-h-[580px] overflow-y-auto">
-      <h1 className="text-xl font-semibold mb-3">Hi, Welcome back</h1>
-      <h2 className="text-lg text-gray-600 font-medium mb-4">
-        Admin’s Dashboard
-      </h2>
-
-      <div className="flex flex-col gap-4 p-2">
-        <div className="grid grid-cols-3 gap-4 max-h-[400px] overflow-y-auto">
-          {data.map((item, index) => (
-            <Card
-              key={index}
-              number={item.number}
-              title={item.title}
-              percentage={item.percentage}
-              icon={item.icon}
-              isNegative={item.isNegative}
-            />
-          ))}
-        </div>
-      </div>
-      <MyAccounts />
-      <Notifications />
-      <Pie />
-      <Transaction />
-    </div>
-  );
-}
+export default ShopsDashboard;
