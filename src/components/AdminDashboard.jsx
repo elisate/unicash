@@ -8,6 +8,7 @@ import {
 import MyAccounts from "./MyAccounts";
 import Notifications from "./Notification";
 import Pie from "./Pie";
+import Transaction from "./Transaction";
 
 const Card = ({ number, title, percentage, icon, isNegative }) => {
   const arrow = isNegative ? (
@@ -24,7 +25,7 @@ const Card = ({ number, title, percentage, icon, isNegative }) => {
 
   return (
     <div
-      className="p-3 bg-white rounded-lg text-center flex items-center justify-between"
+      className="p-4 bg-white rounded-lg text-center flex items-center justify-between"
       style={{ boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset" }}
     >
       <div className="flex flex-col items-center">
@@ -66,7 +67,7 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="p-2 bg-white w-[1080px] right-2 fixed top-[77px] max-h-[500px] overflow-y-auto">
+    <div className="p-4 bg-white w-[1080px] right-2 fixed top-[77px] max-h-[580px] overflow-y-auto">
       <h1 className="text-xl font-semibold mb-3">Hi, Welcome back</h1>
       <h2 className="text-lg text-gray-600 font-medium mb-4">
         Admin’s Dashboard
@@ -89,6 +90,7 @@ export default function AdminDashboard() {
       <MyAccounts />
       <Notifications />
       <Pie />
+      <Transaction />
     </div>
   );
 }

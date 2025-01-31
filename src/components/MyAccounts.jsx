@@ -50,7 +50,7 @@ export default function MyAccounts() {
           {accounts.map((account, index) => (
             <div
               key={index}
-              className="w-[260px] bg-white rounded-lg shadow-md"
+              className="w-[260px] bg-gray-200 rounded-lg shadow-md"
             >
               <h3 className="text-lg font-semibold text-white bg-[#6B5540] p-2 rounded-t-lg">
                 {account.title}
@@ -58,7 +58,7 @@ export default function MyAccounts() {
               <div className="flex items-center justify-between p-3">
                 <p className="text-md font-medium text-gray-700">Balance</p>
                 <p className="text-xl font-semibold text-gray-800">
-                  {isVisible ? account.balance : "****"}
+                  {isVisible ? account.balance : "*******"}
                 </p>
                 <button onClick={() => setIsVisible(!isVisible)}>
                   {isVisible ? (

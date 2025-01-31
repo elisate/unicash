@@ -2,7 +2,6 @@ import React from "react";
 import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/SearchBar";
 import AdminDashboard from "../components/AdminDashboard";
-import MyAccounts from "../components/MyAccounts";
 
 const Dashboard = () => {
   return (
@@ -12,7 +11,6 @@ const Dashboard = () => {
         <SearchBar />
         <div className="flex flex-col">
           <AdminDashboard />
-          <MyAccounts />
         </div>
       </div>
     </div>
