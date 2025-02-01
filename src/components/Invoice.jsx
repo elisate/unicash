@@ -113,7 +113,7 @@ const InvoiceList = () => {
                 <td className="px-6 py-4 text-gray-800">{invoice.amount}</td>
                 <td className="px-6 py-4 text-gray-700">{invoice.shop}</td>
                 <td className="px-6 py-4 text-center">
-                  <FaDownload className="h-5 w-5 text-blue-600 cursor-pointer hover:text-blue-800" />
+                  <FaDownload className="h-5 w-5 text-gray-600 cursor-pointer hover:text-gray-800" />
                 </td>
               </tr>
             ))}
