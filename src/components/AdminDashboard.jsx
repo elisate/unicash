@@ -12,31 +12,33 @@ import Transactions from "./Transaction";
 
 const Card = ({ number, title, percentage, icon, isNegative }) => {
   const arrow = isNegative ? (
-    <FaArrowDown
-      className="text-red-500 mr-1"
-      style={{ transform: "rotate(30deg)" }}
-    />
+    <FaArrowDown className="text-red-500 mr-1" size={12} />
   ) : (
-    <FaArrowUp
-      className="text-green-500 mr-1"
-      style={{ transform: "rotate(30deg)" }}
-    />
+    <FaArrowUp className="text-green-500 mr-1" size={12} />
   );
 
   return (
     <div
-      className="p-3 bg-white rounded-lg text-center flex items-center justify-between"
-      style={{ boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset" }}
+      className="p-3 bg-white rounded-md text-center flex items-center justify-between text-xs"
+      style={{ boxShadow: "0px 2px 3px rgba(0, 0, 0, 0.15) inset" }}
     >
-      <div className="flex flex-col items-center">
-        <h3 className="text-2xl font-semibold mb-1">{number}</h3>
-        <h3 className="text-gray-600 text-md mb-1">{title}</h3>
-        <p className="text-xs text-gray-500 flex items-center">
+      <div className="flex flex-col items-center gap-2">
+        {" "}
+        {/* Added gap for spacing */}
+        <h3 className="text-lg font-semibold">{number}</h3>{" "}
+        {/* Increased font size */}
+        <h3 className="text-gray-600 text-sm">{title}</h3>{" "}
+        {/* Increased font size */}
+        <p className="text-sm text-gray-500 flex items-center">
+          {" "}
+          {/* Increased font size */}
           {arrow}
           {percentage} Since last month
         </p>
       </div>
-      {icon}
+      <div className="flex justify-center items-center p-3 bg-gray-200 rounded-full">
+        <div className="text-3xl">{icon}</div> {/* Increased icon size */}
+      </div>
     </div>
   );
 };
@@ -47,34 +49,35 @@ export default function AdminDashboard() {
       number: 220,
       title: "Students",
       percentage: "3.46%",
-      icon: <FaUserGraduate className="text-3xl text-blue-600" />,
+      icon: <FaUserGraduate className="text-lg text-blue-600" />, // Increased icon size
       isNegative: true,
     },
     {
       number: 30,
       title: "Shops",
       percentage: "3.46%",
-      icon: <FaStore className="text-3xl text-green-600" />,
+      icon: <FaStore className="text-lg text-green-600" />, // Increased icon size
       isNegative: false,
     },
     {
       number: "3500.00",
       title: "Debt Metrics",
       percentage: "3.46%",
-      icon: <FaRegCreditCard className="text-3xl text-red-600" />,
+      icon: <FaRegCreditCard className="text-lg text-red-600" />, // Increased icon size
       isNegative: false,
     },
   ];
 
   return (
-    <div className="p-2 bg-white w-[1080px] right-2 fixed top-[77px] max-h-[560px] overflow-y-auto">
-      <h1 className="text-xl font-semibold mb-3">Hi, Welcome back</h1>
-      <h2 className="text-lg text-gray-600 font-medium mb-4">
+    <div className="p-3 bg-white w-[1080px] right-2 fixed top-[77px] max-h-[560px] overflow-y-auto">
+      <h1 className="text-xl font-medium mb-2">Hi, Welcome back</h1>{" "}
+      {/* Increased font size */}
+      <h2 className="text-md text-gray-600 font-medium mb-3">
         Admin’s Dashboard
-      </h2>
-
+      </h2>{" "}
+      {/* Increased font size */}
       <div className="flex flex-col gap-4 p-2">
-        <div className="grid grid-cols-3 gap-4 max-h-[300px] overflow-y-auto">
+        <div className="grid grid-cols-3 gap-4 max-h-[250px] overflow-y-auto">
           {data.map((item, index) => (
             <Card
               key={index}
