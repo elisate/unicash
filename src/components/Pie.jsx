@@ -40,7 +40,7 @@ const cardData = [
 ];
 
 const options = {
-  cutout: "45%", // Slightly increased cutout for a smaller look
+  cutout: "45%",
   responsive: true,
   maintainAspectRatio: false,
   plugins: {

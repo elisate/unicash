@@ -7,7 +7,6 @@ const ShopsDashboard = () => {
   const [newShop, setNewShop] = useState({ name: "", location: "" });
 
   const handleAddShop = () => {
-    // Add new shop logic
     if (newShop.name && newShop.location) {
       setShops([...shops, newShop]);
       setNewShop({ name: "", location: "" });
@@ -21,8 +20,8 @@ const ShopsDashboard = () => {
       p={2}
       sx={{
         marginTop: 2,
-        height: "100vh", // Ensure the parent container takes full height
-        paddingBottom: "220px", // Space for AddRemove component (adjust this if necessary)
+        height: "100vh",
+        paddingBottom: "220px",
       }}
     >
       <Typography
@@ -49,7 +48,7 @@ const ShopsDashboard = () => {
           maxWidth: "100%",
           height: "350px",
           overflowY: "auto",
-          marginTop: 4, // Space between the cards and the title
+          marginTop: 4,
         }}
       >
         {shops.map((_, index) => (
@@ -89,7 +88,6 @@ const ShopsDashboard = () => {
         ))}
       </Box>
 
-      {/* AddRemove component aligned at the bottom */}
       <AddRemove
         newShop={newShop}
         setNewShop={setNewShop}

@@ -38,7 +38,7 @@ const ShopsDashboard = () => {
           maxWidth: "100%",
           height: "350px",
           overflowY: "auto",
-          marginTop: 4, // Space between the cards and the title
+          marginTop: 4,
         }}
       >
         {shops.map((_, index) => (

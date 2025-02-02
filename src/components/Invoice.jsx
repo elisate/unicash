@@ -1,5 +1,5 @@
 import React from "react";
-import { FaDownload } from "react-icons/fa"; // Importing download icon from React Icons
+import { FaDownload } from "react-icons/fa";
 
 const InvoiceList = () => {
   const invoices = [
@@ -79,7 +79,6 @@ const InvoiceList = () => {
     <div className="w-full px-6 py-6">
       <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
         <table className="w-full text-left border-collapse">
-          {/* Table Header */}
           <thead className="bg-gray-100 text-gray-700">
             <tr>
               <th className="px-6 py-3 font-medium">Invoice</th>
@@ -92,7 +91,6 @@ const InvoiceList = () => {
             </tr>
           </thead>
 
-          {/* Table Body */}
           <tbody className="divide-y divide-gray-200">
             {invoices.map((invoice) => (
               <tr key={invoice.id} className="hover:bg-gray-50 transition">
@@ -112,8 +110,8 @@ const InvoiceList = () => {
                 </td>
                 <td className="px-6 py-4 text-gray-800">{invoice.amount}</td>
                 <td className="px-6 py-4 text-gray-700">{invoice.shop}</td>
-                <td className="px-6 py-4 text-center">
-                  <FaDownload className="h-5 w-5 text-gray-600 cursor-pointer hover:text-gray-800" />
+                <td className="px-32 py-4 text-center">
+                  <FaDownload className="h-3 w-3 text-gray-600 cursor-pointer hover:text-gray-800" />
                 </td>
               </tr>
             ))}
