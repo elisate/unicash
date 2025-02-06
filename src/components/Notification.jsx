@@ -35,8 +35,8 @@ const notifications = [
 
 const Notifications = ({ notifications = [] }) => {
   return (
-    <div className="w-[500px] h-[300px] p-4 rounded-lg bg-gray-200 shadow-md flex flex-col">
-      <h2 className="text-lg font-semibold text-white bg-[#6B5540] p-2 rounded-t-lg  top-0 z-0">
+    <div className="w-full sm:w-[500px] h-[300px] p-4 rounded-lg bg-gray-200 shadow-md flex flex-col">
+      <h2 className="text-lg font-semibold text-white bg-[#6B5540] p-2 rounded-t-lg top-0 z-0">
         Notifications
       </h2>
       <div className="overflow-y-auto flex-1 space-y-3">

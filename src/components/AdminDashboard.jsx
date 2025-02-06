@@ -23,11 +23,9 @@ const Card = ({ number, title, percentage, icon, isNegative }) => {
       style={{ boxShadow: "0px 2px 3px rgba(0, 0, 0, 0.15) inset" }}
     >
       <div className="flex flex-col items-center gap-2">
-        {" "}
-        <h3 className="text-lg font-semibold">{number}</h3>{" "}
-        <h3 className="text-gray-600 text-sm">{title}</h3>{" "}
+        <h3 className="text-lg font-semibold">{number}</h3>
+        <h3 className="text-gray-600 text-sm">{title}</h3>
         <p className="text-sm text-gray-500 flex items-center">
-          {" "}
           {arrow}
           {percentage} Since last month
         </p>
@@ -65,13 +63,13 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="p-3 bg-white w-[1080px] right-2 fixed top-[77px] max-h-[560px] overflow-y-auto">
-      <h1 className="text-xl font-medium mb-2">Hi, Welcome back</h1>{" "}
+    <div className="p-3 bg-white w-full sm:w-[1080px] right-2 fixed top-[120px] max-h-[560px] overflow-y-auto sm:ml-auto sm:mr-auto">
+      <h1 className="text-xl font-medium mb-2">Hi, Welcome back</h1>
       <h2 className="text-md text-gray-600 font-medium mb-3">
         Admin’s Dashboard
-      </h2>{" "}
+      </h2>
       <div className="flex flex-col gap-4 p-2">
-        <div className="grid grid-cols-3 gap-4 max-h-[250px] overflow-y-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-h-[250px] overflow-y-auto">
           {data.map((item, index) => (
             <Card
               key={index}

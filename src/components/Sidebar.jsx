@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { TbLayoutDashboardFilled, TbSettings2 } from "react-icons/tb";
-import { FaCalendarAlt, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
+import {
+  FaCalendarAlt,
+  FaQuestionCircle,
+  FaSignOutAlt,
+  FaBars,
+} from "react-icons/fa";
 import { MdAnalytics } from "react-icons/md";
 import { IoWallet } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
@@ -10,6 +15,7 @@ const Sidebar = () => {
   const currentPath = location.pathname;
 
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const getActiveClass = (path) => {
     return currentPath === path
@@ -24,8 +30,10 @@ const Sidebar = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
+        setIsMobile(true);
         setSidebarCollapsed(true);
       } else {
+        setIsMobile(false);
         setSidebarCollapsed(false);
       }
     };
@@ -39,12 +47,21 @@ const Sidebar = () => {
   return (
     <div className="flex">
       <div
-        className={`fixed w-56 min-h-screen bg-[#6B5540] rounded-r-[20px] p-8 flex flex-col justify-between transition-all duration-300 ${
+        className={`fixed z-50 min-h-screen bg-[#6B5540] rounded-r-[20px] p-6 flex flex-col justify-between transition-all duration-300 ${
           isSidebarCollapsed ? "w-16" : "w-56"
-        }`}
+        } ${isMobile ? "w-16" : "w-56"} items-center`}
       >
+        {isMobile && (
+          <button
+            onClick={toggleSidebar}
+            className="absolute top-2 left-4 text-white text-2xl"
+          >
+            <FaBars />
+          </button>
+        )}
+
         <nav>
-          <ul className="space-y-8">
+          <ul className="space-y-8 mt-8">
             <li>
               <Link
                 to="/dashboard"
