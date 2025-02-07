@@ -21,7 +21,7 @@ export default function Navbar() {
   const handleProfileClick = () => console.log("Profile clicked");
 
   return (
-    <nav className="w-full max-w-screen-lg h-[77px] bg-white flex items-center justify-between px-4 sm:px-6 lg:px-8  right-0 mx-auto z-0 border-b border-gray-300 fixed top-0 left-0  ml-56">
+    <nav className="w-full max-w-screen-lg h-[77px] bg-white flex items-center justify-between px-4 sm:px-6 lg:px-8  right-0 mx-auto  border-b border-gray-300 fixed top-0 left-0  ml-56 z-50">
       {/* Left Section */}
       <div className="flex items-center gap-2 sm:gap-4">
         <NavbarIcon Icon={Search} size={24} onClick={handleSearchClick} />
