@@ -1,7 +1,7 @@
 import { Bell, Users, Search } from "lucide-react";
 
 const NavbarIcon = ({ Icon, size, onClick, hasNotification }) => (
-  <div className="relative text-gray-600 cursor-pointer p-2" onClick={onClick}>
+  <div className="relative p-2 text-gray-600 cursor-pointer" onClick={onClick}>
     <Icon size={size} />
     {hasNotification && (
       <span className="absolute top-1 right-1 h-2.5 w-2.5 bg-green-500 rounded-full"></span>
@@ -42,7 +42,7 @@ export default function Navbar() {
           <img
             src="/profile.jpg"
             alt="Profile"
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
+            className="object-cover w-8 h-8 rounded-full sm:w-10 sm:h-10"
           />
           {notifications.profile && (
             <span className="absolute top-1 right-1 h-2.5 w-2.5 bg-green-500 rounded-full"></span>
